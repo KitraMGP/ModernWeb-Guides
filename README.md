@@ -2,7 +2,7 @@
 
 本指导书可以帮助你从0开始搭建一个基于Vue.js和Spring Boot的前后端分离工程，并提交到GitHub仓库中。
 
-项目前端使用Vue.js和Element Plus。后端使用Spring Boot、MyBatis，使用Gradle作为构建工具，使用MySQL 8.4作为数据库。
+项目前端使用Vue3框架和Element Plus组件库。后端使用Spring Boot、MyBatis，使用Gradle作为构建工具，使用MySQL 8.4作为数据库。
 
 本教程假定你使用的操作系统是Windows。
 
