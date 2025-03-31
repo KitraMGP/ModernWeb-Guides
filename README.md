@@ -6,6 +6,8 @@
 
 本教程假定你使用的操作系统是Windows。
 
+**考虑到有的同学因为网络原因不能正常加载GitHub上的图片，故本教程同步更新国内平台Gitee版本：**[点击前往](https://gitee.com/zi-jing/ModernWeb-Guides)
+
 ## 0. 开始之前的准备工作
 
 **需要安装的软件：**
