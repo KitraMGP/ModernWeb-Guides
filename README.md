@@ -60,7 +60,7 @@
 
 然后在你电脑上用来存放项目的文件夹里打开终端，执行以下命令：
 
-````
+````bash
 git clone <刚刚复制的链接>
 ````
 
@@ -80,7 +80,158 @@ git clone <刚刚复制的链接>
 
 ## 4. 创建前端项目
 
-// TODO
+项目的前端使用Vue3框架，并使用Element Plus组件库来简化开发。
+
+[Vue官网](https://cn.vuejs.org/)
+
+[Element Plus官网](https://element-plus.org/zh-CN/)
+
+现在我们开始创建前端项目。
+
+1. **设置国内镜像源**
+
+在确保你已经安装好Node.js后（在“准备工作”一节中提到过），打开终端执行以下命令：
+
+```bash
+npm config set registry https://registry.npmmirror.com
+```
+
+这条命令的作用是将NPM的包管理器镜像源设置为国内镜像，这样做可以显著加速NPM包的下载。
+
+NPM镜像源设置是全局生效的，这意味着你不一定需要在项目目录中执行这条命令，且以后创建或使用别的前端项目的时候，不需要再次设置。
+
+2. **使用官方工具创建示例项目**
+
+在你的仓库根目录执行以下命令：
+
+```bash
+npm create vue@latest
+```
+
+系统可能会询问你是否要安装create-vue，请选择是：
+
+```
+Need to install the following packages:
+create-vue@3.15.1
+Ok to proceed? (y) y  <--输入y然后按下回车
+```
+
+等待它下载安装完成后，系统会要求你输入要创建的项目名称，请输入`backend`。
+
+然后你会看到以下的选择界面：
+
+![image-20250331222243904](D:\04_文档\2025\高级Web实验指导书\images\image-20250331222243904.png)
+
+其中必选的功能是Router、Pinia、ESLint和Prettier。
+
+- Router用于单页面的页内导航，各种页面切换都应该基于它来实现。
+
+- Pinia用于创建一个可以被各个页面共享的数据存储，普通的`ref`或`reactive`响应式变量都仅在当前页面生效，Pinia可以让你在多个页面之间共享数据。
+
+- ESLint提供了强大的语法检查功能，可以减少代码错误。
+
+- Prettier可以自动格式化代码，保持代码整洁美观。
+- TypeScript是可选项，它是JavaScript的升级版本，它在JavaScript的基础上添加了完善的类型系统，是一门强类型编程语言。TypeScript的语法提示功能更强，强类型的特性让它更不容易出现编程错误。它和JavaScript有着轻微的不同，需要一点时间来适应。
+- 端到端测试是可选项，你可以利用端到端测试技术来对页面功能进行自动化测试，你可以用它自动模拟用户操作，并判断屏幕上的内容是否正确。若你希望对前端进行自动化测试，可以勾选这个功能。
+
+然后系统会询问“是否引入 Oxlint 以加快检测？（试验阶段）”，请选择否。
+
+然后项目创建完成。打开`frontend`文件夹，你会看到一系列的文件和文件夹，这便是你刚刚创建的Vue示例项目。
+
+使用VSCode打开`frontend`文件夹（不是仓库根目录），在VSCode中打开终端（点击“终端”菜单中的“新建终端”），输入以下命令来将项目的所有依赖项下载到本地：
+
+```bash
+npm install
+```
+
+若VSCode提示你在父目录发现了Git仓库，是否打开，请选择是（点击后可能还需要在屏幕上方进行选择）。
+
+> 如果不打开Git仓库，你就无法在VSCode中使用Git来进行代码提交和推送了，因此你应该打开。
+
+若VSCode建议你安装ESLint、Prettier等插件，请根据提示进行安装。
+
+> 安装这些插件后，VSCode中的代码分析、错误纠正和自动格式化代码等功能才会生效。
+
+3. **尝试运行项目并查看示例页面**
+
+在VSCode的终端中输入命令`npm run dev`，等待片刻即可看到Vite测试服务器的运行界面：
+
+![image-20250331225631256](D:\04_文档\2025\高级Web实验指导书\images\image-20250331225631256.png)
+
+你可以通过链接打开网页，也可以通过输入字母o后按下回车打开浏览器查看页面。
+
+> 在npm run dev运行期间，若你修改前端代码并保存，浏览器里会实时同步你的更改。
+>
+> 若要关闭测试服务器，可以在终端中按下Ctrl+C或者输入q后按下回车。
+
+打开浏览器后，你会看到如下测试页面：
+
+![image-20250331230810007](D:\04_文档\2025\高级Web实验指导书\images\image-20250331230810007.png)
+
+把鼠标移动到页面下方中间的Vue图表处，会显示两个按钮，它们分别为**Vue开发工具**和**组件定位工具**。Vue开发工具可以让你查看页面结构和各种数据，组件定位工具可以让你使用鼠标来选取任一元素，通过点击即可在VSCode中跳转到这个元素的代码位置。这都是Vite测试服务器提供的十分实用的工具，在后续的开发中可以发挥很大的作用。
+
+4. **引入Element Plus**
+
+Element Plus是适用于Vue 3的一款组件库，它预置了各种各种常用的前端组件，可以提高开发效率，并制作美观的界面。
+
+在[Element Plus 组件总览](https://element-plus.org/zh-CN/component/overview)中可以查看Element Plus提供的各种组件。
+
+现在，我们开始在项目里安装Element Plus。
+
+> 提示：以下的操作步骤，均参照了Element Plus官网的“指南”中的“安装”和“快速开始”章节。
+
+关闭Vite测试服务器，在VSCode终端中执行以下命令：
+
+```bash
+npm install element-plus --save
+```
+
+然后执行以下命令：
+
+```bash
+npm install -D unplugin-vue-components unplugin-auto-import
+```
+
+然后编辑前端项目根目录的`vite.config.ts`文件，在文件合适位置插入以下内容：
+
+```ts
+// ...
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+
+export default defineConfig({
+  // ...
+  plugins: [
+    // ...
+    AutoImport({
+      resolvers: [ElementPlusResolver()],
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()],
+    }),
+  ],
+  // ...
+})
+```
+
+然后编辑`tsconfig.app.json`，在相应位置添加以下代码：
+
+```json
+{
+  // ...
+  "compilerOptions": {
+	// ...
+    "types": ["element-plus/global"],
+  }
+}
+```
+
+现在你已经完成了Element Plus的安装，在`App.vue`中添加一个Element Plus组件（例如按钮`el-button`），你就可以看到一个比较漂亮的按钮被添加到了页面上。这代表你的Element Plus已经可以使用了。
+
+5. **清理示例项目，开始编写自己的前端页面**
+
+// 未完待续
 
 ## 5. 创建后端项目
 
